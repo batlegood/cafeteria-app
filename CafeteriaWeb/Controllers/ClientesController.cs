@@ -27,7 +27,10 @@ public class ClientesController : Controller
             ModelState.AddModelError("Cedula",
                 "Cédula inválida. Solo se permiten 6, 8 o 10 dígitos. Si es de 10, debe comenzar con 1.");
         }
-
+        if (_context.Clientes.Any(c => c.Cedula == cliente.Cedula))
+        {
+            ModelState.AddModelError("Cedula", "Ya existe un cliente con esta cédula.");
+        }
         if (ModelState.IsValid)
         {
             _context.Add(cliente);
@@ -36,7 +39,7 @@ public class ClientesController : Controller
             ViewBag.Message = "Cliente registrado correctamente.";
         }
 
-        return View();
+        return View(cliente);
     }
 
     private bool ValidarCedula(string cedula)

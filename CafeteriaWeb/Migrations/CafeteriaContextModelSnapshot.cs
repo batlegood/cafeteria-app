@@ -23,7 +23,8 @@ namespace CafeteriaWeb.Migrations
             modelBuilder.Entity("Cliente", b =>
                 {
                     b.Property<string>("Cedula")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Correo")
                         .IsRequired()
@@ -31,7 +32,8 @@ namespace CafeteriaWeb.Migrations
 
                     b.Property<string>("Nombre")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Cedula");
 
